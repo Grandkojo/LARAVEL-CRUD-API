@@ -112,41 +112,41 @@ class PaginationAndOptionalParametersTest extends TestCase
      * this test the search query paramater for todos by status which is not found
      */
 
-     public function test_todos_status_search_query_param_not_found()
-     {
-         // search doesn't find any 
-         $search = 'Strdhgfsfds';
-         $status = '1';
-         $response = $this->getJson("/api/todos/status/{$status}?search=" . $search);
-         $response->assertStatus(404)
-             ->assertJson([
-                 'status_code' => '404',
-                 'message' => 'Todo(s) cannot be found. Try a different search'
-             ]);
-     }
- 
-     /**
-      * this test the search query paramater for todos by status which is found
-      */
- 
-    //  public function test_todos_status_search_query_param_found()
-    //  {
-    //      $todo = Todo::create([
-    //          'title' => 'Attend meeting',
-    //          'details' => 'Attend the scheduled meeting tomorrow',
-    //          'status' => '1'
-    //      ]);
- 
-    //      // search for todo by title and details
-    //      $search = 'attend';
- 
-    //      $response = $this->getJson('/api/todos?search=' . $search);
- 
-    //      $response->assertStatus(200)
-    //          ->assertJsonFragment([
-    //              'title' => $todo->title,
-    //              'details' => $todo->details,
-    //              'status' => $todo->status,
-    //          ]);
-    //  }
+    public function test_todos_status_search_query_param_not_found()
+    {
+        // search doesn't find any 
+        $search = 'Strdhgfsfds';
+        $status = '1';
+        $response = $this->getJson("/api/todos/status/{$status}?search=" . $search);
+        $response->assertStatus(404)
+            ->assertJson([
+                'status_code' => '404',
+                'message' => 'Todo(s) cannot be found. Try a different search'
+            ]);
+    }
+
+    /**
+     * this test the search query paramater for todos by status which is found
+     */
+
+    public function test_todos_status_search_query_param_found()
+    {
+        $todo = Todo::create([
+            'title' => 'Attend meeting',
+            'details' => 'Attend the scheduled meeting tomorrow',
+            'status' => '1'
+        ]);
+
+        // search for todo by title and details
+        $search = 'Attend';
+
+        $response = $this->getJson("/api/todos/status/{$todo->status}?search=" . $search);
+
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'title' => $todo->title,
+                'details' => $todo->details,
+                'status' => $todo->status,
+            ]);
+    }
 }

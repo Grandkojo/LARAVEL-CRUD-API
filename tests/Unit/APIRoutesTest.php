@@ -40,7 +40,7 @@ class APIRoutesTest extends TestCase
     /**
      * test the api/todos/status/{status_type} route
      */
-    public function test_todos_status_type()
+    public function test_todos_status_type_valid()
     {
         Todo::create(['title' => 'First Todo', 'details' => 'Details for first todo', 'status' => '0']);
         Todo::create(['title' => 'Second Todo', 'details' => 'Details for second todo', 'status' => '1']);
@@ -59,6 +59,8 @@ class APIRoutesTest extends TestCase
         $response = $this->get("api/todos/status/{$statusType}");
         $response->assertStatus(200);
     }
+
+
 
     /**
      * test the api/todos/status/{status_type} route with wrong status type
