@@ -170,10 +170,21 @@ class TodoController extends Controller
             ->paginate(10);
 
 
-        $data = [
-            'status_code' => '200',
-            'data' => $todos
-        ];
+        if ($todos->isEmpty()) {
+
+            $data = [
+                'status_code' => '404',
+                'message' => 'Todo(s) cannot be found. Try a different search'
+            ];
+            return response()->json($data, 404);
+        } else {
+
+            $data = [
+                'status_code' => '200',
+                'data' => $todos
+            ];
+        }
+
         return response()->json($data, 200);
     }
 
@@ -251,11 +262,11 @@ class TodoController extends Controller
             $todo->save();
 
             $data = [
-                'status_code' => 200,
+                'status_code' => '201',
                 'message' => 'Todo created successfully',
             ];
 
-            return response()->json($data, 200);
+            return response()->json($data, 201);
         }
     }
 
@@ -287,7 +298,7 @@ class TodoController extends Controller
 
             if (!$todo) {
                 $data = [
-                    'status_code' => 404,
+                    'status_code' => '404',
                     'message' => 'Todo not found',
                 ];
                 return response()->json($data, 404);
@@ -298,7 +309,7 @@ class TodoController extends Controller
 
             $data = [
 
-                'status_code' => 200,
+                'status_code' => '200',
                 'message' => 'Todo updated successfully',
                 'data' => $todo,
             ];
@@ -320,7 +331,7 @@ class TodoController extends Controller
 
         if (!$todo) {
             $data = [
-                'status_code' => 404,
+                'status_code' => '404',
                 'message' => 'Todo not found',
             ];
             return response()->json($data, 404);

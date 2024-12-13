@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
+    use HasFactory;
     const STATUS_NOT_STARTED = 0;
     const STATUS_IN_PROGRESS = 1;
     const STATUS_COMPLETED = 2; 
