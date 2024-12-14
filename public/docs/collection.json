@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost"
+            "value": "https:\/\/laravel-crud-api-production-223e.up.railway.app\/"
         }
     ],
     "info": {
         "name": "Laravel_CRUD_API",
-        "_postman_id": "100c1689-73ea-4022-8533-8ca17ba4c2c0",
+        "_postman_id": "76eac5f6-2cba-45d3-9694-1fdc706a45dc",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -50,23 +50,19 @@
                             "header": [
                                 {
                                     "key": "cache-control",
-                                    "value": "public"
+                                    "value": "no-cache, private"
                                 },
                                 {
                                     "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
-                                    "key": "accept-ranges",
-                                    "value": "bytes"
+                                    "value": "application\/json"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "",
+                            "code": 404,
+                            "body": "{\n    \"message\": \"The route api\/docs could not be found.\"\n}",
                             "name": ""
                         }
                     ]
@@ -83,7 +79,7 @@
                                 {
                                     "id": "fallbackPlaceholder",
                                     "key": "fallbackPlaceholder",
-                                    "value": "%26%23",
+                                    "value": "b",
                                     "description": ""
                                 }
                             ]
@@ -122,7 +118,7 @@
                                 }
                             ],
                             "code": 404,
-                            "body": "{\"status_code\":\"404\",\"message\":\"Route does not exist. Try route api\\\/routes-list to see available endpoints\"}",
+                            "body": "{\n    \"message\": \"The route api\/b could not be found.\"\n}",
                             "name": ""
                         }
                     ]
@@ -381,7 +377,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repellendus",
+                                    "value": "molestias",
                                     "description": "The ID of the edit."
                                 },
                                 {
@@ -439,7 +435,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "nobis",
                                     "description": "The ID of the delete."
                                 },
                                 {

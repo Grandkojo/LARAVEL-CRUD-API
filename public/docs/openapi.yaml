@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'https://laravel-crud-api-production-223e.up.railway.app'
 paths:
   /api/docs:
     get:
@@ -14,13 +14,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        200:
+        404:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: ''
+                type: object
+                example:
+                  message: 'The route api/docs could not be found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The route api/docs could not be found.'
       tags:
         - Endpoints
       security: []
@@ -38,15 +43,11 @@ paths:
               schema:
                 type: object
                 example:
-                  status_code: '404'
-                  message: 'Route does not exist. Try route api/routes-list to see available endpoints'
+                  message: 'The route api/b could not be found.'
                 properties:
-                  status_code:
-                    type: string
-                    example: '404'
                   message:
                     type: string
-                    example: 'Route does not exist. Try route api/routes-list to see available endpoints'
+                    example: 'The route api/b could not be found.'
       tags:
         - Endpoints
       security: []
@@ -55,7 +56,7 @@ paths:
         in: path
         name: fallbackPlaceholder
         description: ''
-        example: '&#'
+        example: b
         required: true
         schema:
           type: string
@@ -401,7 +402,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the edit.'
-        example: repellendus
+        example: molestias
         required: true
         schema:
           type: string
@@ -460,7 +461,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: ut
+        example: nobis
         required: true
         schema:
           type: string
