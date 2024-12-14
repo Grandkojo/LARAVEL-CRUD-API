@@ -5,25 +5,33 @@ namespace App\Http\Controllers\API;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-
-use function PHPSTORM_META\type;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-use function PHPUnit\Framework\isEmpty;
-
 class TodoController extends Controller
 {
-    /**
-     * return all todos registered
-     * 
-     * @param Illuminate\Http\Request $request the get request to retrieve the data
-     * 
-     * @return Illuminate\Http\Response the response indicating the result of the operation
-     */
 
     const orderType = ['asc', 'desc'];
     const statusTypes = ['0', '1', '2'];
+    /**
+     * Get all todos.
+     * 
+     * Retrieves a list of todos with optional ordering and search parameters.
+     * 
+     * @group Todos
+     * 
+     * @queryParam order string Order of the results. Can be `asc` or `desc`. Default is `desc`. Example: "desc".
+     * @queryParam search string Search term for filtering todos by title or details. Must be at least 2 characters. Example: "meeting".
+     * 
+     * @response 200 {
+     *   "status_code": 200,
+     *   "todos": []
+     * }
+     * @response 422 {
+     *   "status_code": 422,
+     *   "message": "Order type can only be asc or desc"
+     * }
+     */
 
     public function index(Request $request)
     {
@@ -95,20 +103,28 @@ class TodoController extends Controller
         }
     }
 
-
     /**
-     * return all todos registered
+     * Filter todos by status.
      * 
-     * @param Illuminate\Http\Request $request the get request to retrieve the data
-     * @param int $status_type the status type to filter todos
-     * @var array<List> the data to be stored before returned
+     * Filters todos based on their status and optional search parameters.
      * 
-     * @return Illuminate\Http\Response the response indicating the result of the operation
+     * @group Todos
+     * 
+     * @queryParam order string Order of the results. Can be `asc` or `desc`. Default is `desc`. Example: "asc".
+     * @queryParam search string Search term for filtering todos by title or details. Must be at least 2 characters. Example: "meeting".
+     * @urlParam status_type int required Status type to filter by (0=Not Started, 1=In Progress, 2=Completed). Example: 1
+     * 
+     * @response 200 {
+     *   "status_code": 200,
+     *   "data": []
+     * }
+     * @response 404 {
+     *   "status_code": 404,
+     *   "message": "Todo(s) cannot be found. Try a different search"
+     * }
      */
-
     public function filter_by_status(Request $request, $status_type)
     {
-
         $order = $request->query('order', 'desc');
         $search_param = $request->query('search', '');
         $data = [];
@@ -188,10 +204,17 @@ class TodoController extends Controller
         return response()->json($data, 200);
     }
 
-
     /**
-     * Returns the guide on how to filter the todos by status
-     * @return Illuminate\Http\Response the response indicating the result of the operation 
+     * Display filter guidance.
+     * 
+     * Provides instructions on filtering todos by status.
+     * 
+     * @group Todos
+     * 
+     * @response 200 {
+     *   "status_code": 200,
+     *   "message": "Provide a status to filter by after the endpoint - 0=Not Started, 1=In Progress, 2=Completed"
+     * }
      */
     public function filter_message()
     {
@@ -203,10 +226,18 @@ class TodoController extends Controller
     }
 
     /**
-     * returns the list of routes available
-     * @return array<List>
+     * Get the list of routes.
+     * 
+     * Returns a list of available API routes.
+     * 
+     * @group Misc
+     * 
+     * @response 200 {
+     *   "idx": "Welcome to Laravel Crud API",
+     *   "status_code": 200,
+     *   "routes": []
+     * }
      */
-
     public function routes_list()
     {
         $routes = require base_path('routes/routes_list.php');
@@ -229,15 +260,29 @@ class TodoController extends Controller
     }
 
     /**
-     * creates a new todo in the database
-     * @param Illuminate\Http\Request $request the post request to create the new todo
-     * @return Illuminate\Http\Response the response indicating the result of the operation 
+     * Create a new todo.
+     * 
+     * Adds a new todo to the database.
+     * 
+     * @group Todos
+     * 
+     * @bodyParam title string required The title of the todo. Example: "Finish project".
+     * @bodyParam details string required Details about the todo. Must be at least 10 characters. Example: "Complete all tasks for the project".
+     * @bodyParam status int required The status of the todo. Must be 0, 1, or 2. Example: 0
+     * 
+     * @response 201 {
+     *   "status_code": 201,
+     *   "message": "Todo created successfully"
+     * }
+     * @response 422 {
+     *   "status_code": 422,
+     *   "message": {
+     *     "title": ["The title field is required."]
+     *   }
+     * }
      */
-
-
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', Rule::unique('todos', 'title')],
             'details' => ['required', 'string', 'min:10'],
@@ -270,12 +315,27 @@ class TodoController extends Controller
         }
     }
 
-
     /**
-     * edits an existing todo in the database
-     * @param Illuminate\Http\Request $request the post request to create the new todo
-     * @param int $todo_id id of the todo
-     * @return Illuminate\Http\Response the response indicating the result of the operation 
+     * Update an existing todo.
+     * 
+     * Modifies an existing todo in the database.
+     * 
+     * @group Todos
+     * 
+     * @urlParam todo_id int required The ID of the todo to update. Example: 1
+     * @bodyParam title string The new title for the todo. Example: "New Title".
+     * @bodyParam details string The new details for the todo. Example: "Updated details for the todo".
+     * @bodyParam status int The new status for the todo. Must be 0, 1, or 2. Example: 2
+     * 
+     * @response 200 {
+     *   "status_code": 200,
+     *   "message": "Todo updated successfully",
+     *   "data": {}
+     * }
+     * @response 404 {
+     *   "status_code": 404,
+     *   "message": "Todo not found"
+     * }
      */
     public function update(Request $request, $todo_id)
     {
@@ -320,11 +380,23 @@ class TodoController extends Controller
     }
 
     /**
-     * deletes an existing todo
-     * @param int $todo_id id of the todo
-     * @return Illuminate\Http\Response the response indicating the result of the operation 
+     * Delete a todo.
+     * 
+     * Removes a todo from the database.
+     * 
+     * @group Todos
+     * 
+     * @urlParam todo_id int required The ID of the todo to delete. Example: 1
+     * 
+     * @response 200 {
+     *   "status_code": 200,
+     *   "message": "Todo deleted successfully"
+     * }
+     * @response 404 {
+     *   "status_code": 404,
+     *   "message": "Todo not found"
+     * }
      */
-
     public function destroy($todo_id)
     {
         $todo = Todo::find($todo_id);

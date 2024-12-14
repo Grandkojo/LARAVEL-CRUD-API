@@ -1,0 +1,44 @@
+name: Misc
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/routes-list
+    metadata:
+      groupName: Misc
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the list of routes.'
+      description: 'Returns a list of available API routes.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "idx": "Welcome to Laravel Crud API",
+            "status_code": 200,
+            "routes": []
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

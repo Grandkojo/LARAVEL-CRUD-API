@@ -21,3 +21,5 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+app/Http/Controllers/API/TodoController copy.php

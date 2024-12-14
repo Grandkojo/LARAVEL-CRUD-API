@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
+Route::get('/', function () {
+    return response()->json([
+        'status' => 'Found',
+        'msg ' => 'Welcome to Laravel Crud API. navigate to api/docs/ to view the api documentation or api/routes-list to access all available routes'
+    ], 200);
+});
 
-Route::get('/', function(){
-    return response()->json('Welcome to Laravel Crud API. access api/routes-list to access all available routes', 200);
+Route::get('/docs', function () {
+    return response()->file(public_path('docs/index.html'));
+    // return view('welcome');
 });
 
 
@@ -31,9 +35,9 @@ Route::delete('todos/delete/{id}', [TodoController::class, 'destroy']);
 
 //Not Found route
 
-Route::fallback(function (){
+Route::fallback(function () {
     return response()->json([
         'status_code' => '404',
-        'message' =>'Route does not exist. Try route api/routes-list to see available endpoints'
+        'message' => 'Route does not exist. Try route api/routes-list to see available endpoints'
     ], 404);
 });

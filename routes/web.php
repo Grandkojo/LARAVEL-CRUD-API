@@ -3,5 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('api/');
+    // return response()->json('Welcome to Laravel Crud API. access api/routes-list to access all available routes or api/docs/ to view the api documentation', 200);
 });

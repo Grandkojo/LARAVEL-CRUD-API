@@ -1,0 +1,467 @@
+openapi: 3.0.3
+info:
+  title: Laravel_CRUD_API
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  '/api/{fallbackPlaceholder}':
+    get:
+      summary: ''
+      operationId: getApiFallbackPlaceholder
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: '404'
+                  message: 'Route does not exist. Try route api/routes-list to see available endpoints'
+                properties:
+                  status_code:
+                    type: string
+                    example: '404'
+                  message:
+                    type: string
+                    example: 'Route does not exist. Try route api/routes-list to see available endpoints'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: fallbackPlaceholder
+        description: ''
+        example: ".'"
+        required: true
+        schema:
+          type: string
+  /api/routes-list:
+    get:
+      summary: 'Get the list of routes.'
+      operationId: getTheListOfRoutes
+      description: 'Returns a list of available API routes.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  idx: 'Welcome to Laravel Crud API'
+                  status_code: 200
+                  routes: []
+                properties:
+                  idx:
+                    type: string
+                    example: 'Welcome to Laravel Crud API'
+                  status_code:
+                    type: integer
+                    example: 200
+                  routes:
+                    type: array
+                    example: []
+      tags:
+        - Misc
+      security: []
+  /api/todos:
+    get:
+      summary: 'Get all todos.'
+      operationId: getAllTodos
+      description: 'Retrieves a list of todos with optional ordering and search parameters.'
+      parameters:
+        -
+          in: query
+          name: order
+          description: 'Order of the results, can be `asc` or `desc`. Default is `desc`.'
+          example: '"desc".'
+          required: false
+          schema:
+            type: string
+            description: 'Order of the results, can be `asc` or `desc`. Default is `desc`.'
+            example: '"desc".'
+            nullable: false
+        -
+          in: query
+          name: search
+          description: 'Search term for filtering todos by title or details. Must be at least 2 characters.'
+          example: '"meeting".'
+          required: false
+          schema:
+            type: string
+            description: 'Search term for filtering todos by title or details. Must be at least 2 characters.'
+            example: '"meeting".'
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 200
+                  todos: []
+                properties:
+                  status_code:
+                    type: integer
+                    example: 200
+                  todos:
+                    type: array
+                    example: []
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 422
+                  message: 'Order type can only be asc or desc'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 422
+                  message:
+                    type: string
+                    example: 'Order type can only be asc or desc'
+      tags:
+        - Todos
+      security: []
+  '/api/todos/status/{status_type}':
+    get:
+      summary: 'Filter todos by status.'
+      operationId: filterTodosByStatus
+      description: 'Filters todos based on their status and optional search parameters.'
+      parameters:
+        -
+          in: query
+          name: order
+          description: 'Order of the results. Can be `asc` or `desc`. Default is `desc`.'
+          example: '"asc".'
+          required: false
+          schema:
+            type: string
+            description: 'Order of the results. Can be `asc` or `desc`. Default is `desc`.'
+            example: '"asc".'
+            nullable: false
+        -
+          in: query
+          name: search
+          description: 'Search term for filtering todos by title or details. Must be at least 2 characters.'
+          example: '"meeting".'
+          required: false
+          schema:
+            type: string
+            description: 'Search term for filtering todos by title or details. Must be at least 2 characters.'
+            example: '"meeting".'
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 200
+                  data: []
+                properties:
+                  status_code:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example: []
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 404
+                  message: 'Todo(s) cannot be found. Try a different search'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'Todo(s) cannot be found. Try a different search'
+      tags:
+        - Todos
+      security: []
+    parameters:
+      -
+        in: path
+        name: status_type
+        description: 'Status type to filter by (0=Not Started, 1=In Progress, 2=Completed).'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/todos/status:
+    get:
+      summary: 'Display filter guidance.'
+      operationId: displayFilterGuidance
+      description: 'Provides instructions on filtering todos by status.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 200
+                  message: 'Provide a status to filter by after the endpoint - 0=Not Started, 1=In Progress, 2=Completed'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Provide a status to filter by after the endpoint - 0=Not Started, 1=In Progress, 2=Completed'
+      tags:
+        - Todos
+      security: []
+  /api/todos/new:
+    post:
+      summary: 'Create a new todo.'
+      operationId: createANewTodo
+      description: 'Adds a new todo to the database.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 201
+                  message: 'Todo created successfully'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 201
+                  message:
+                    type: string
+                    example: 'Todo created successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 422
+                  message:
+                    title:
+                      - 'The title field is required.'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 422
+                  message:
+                    type: object
+                    properties:
+                      title:
+                        type: array
+                        example:
+                          - 'The title field is required.'
+                        items:
+                          type: string
+      tags:
+        - Todos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'The title of the todo.'
+                  example: '"Finish project".'
+                  nullable: false
+                details:
+                  type: string
+                  description: 'Details about the todo. Must be at least 10 characters.'
+                  example: '"Complete all tasks for the project".'
+                  nullable: false
+                status:
+                  type: integer
+                  description: 'The status of the todo. Must be 0, 1, or 2.'
+                  example: 0
+                  nullable: false
+              required:
+                - title
+                - details
+                - status
+      security: []
+  '/api/todos/edit/{id}':
+    put:
+      summary: 'Update an existing todo.'
+      operationId: updateAnExistingTodo
+      description: 'Modifies an existing todo in the database.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 200
+                  message: 'Todo updated successfully'
+                  data: {  }
+                properties:
+                  status_code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Todo updated successfully'
+                  data:
+                    type: object
+                    properties: {  }
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 404
+                  message: 'Todo not found'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'Todo not found'
+      tags:
+        - Todos
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'The new title for the todo.'
+                  example: '"New Title".'
+                  nullable: false
+                details:
+                  type: string
+                  description: 'The new details for the todo.'
+                  example: '"Updated details for the todo".'
+                  nullable: false
+                status:
+                  type: integer
+                  description: 'The new status for the todo. Must be 0, 1, or 2.'
+                  example: 2
+                  nullable: false
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the edit.'
+        example: alias
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: todo_id
+        description: 'The ID of the todo to update.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/todos/delete/{id}':
+    delete:
+      summary: 'Delete a todo.'
+      operationId: deleteATodo
+      description: 'Removes a todo from the database.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 200
+                  message: 'Todo deleted successfully'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Todo deleted successfully'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status_code: 404
+                  message: 'Todo not found'
+                properties:
+                  status_code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'Todo not found'
+      tags:
+        - Todos
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the delete.'
+        example: aut
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: todo_id
+        description: 'The ID of the todo to delete.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Misc
+    description: ''
+  -
+    name: Todos
+    description: ''
