@@ -282,7 +282,7 @@ class TodoController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => ['string', Rule::unique('todos', 'title')],
             'details' => ['string', 'min:10'],
-            'status' => ['required', Rule::in(['0', '1', '2'])]
+            'status' => [Rule::in(['0', '1', '2'])]
 
         ]);
 
