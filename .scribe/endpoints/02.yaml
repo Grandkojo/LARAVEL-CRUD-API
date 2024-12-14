@@ -1,35 +1,179 @@
-name: Endpoints
+name: Todos
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/{fallbackPlaceholder}'
+    uri: api/todos
     metadata:
-      groupName: Endpoints
+      groupName: Todos
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Get all todos.'
+      description: 'Retrieves a list of todos with optional ordering and search parameters.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      order:
+        name: order
+        description: 'Order of the results. Can be `asc` or `desc`. Default is `desc`.'
+        required: false
+        example: '"desc".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      search:
+        name: search
+        description: 'Search term for filtering todos by title or details. Must be at least 2 characters.'
+        required: false
+        example: '"meeting".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      order: '"desc".'
+      search: '"meeting".'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status_code": 200,
+            "todos": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "status_code": 422,
+            "message": "Order type can only be asc or desc"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/todos/status/{status_type}'
+    metadata:
+      groupName: Todos
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Filter todos by status.'
+      description: 'Filters todos based on their status and optional search parameters.'
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      fallbackPlaceholder:
-        name: fallbackPlaceholder
-        description: ''
+      status_type:
+        name: status_type
+        description: 'Status type to filter by (0=Not Started, 1=In Progress, 2=Completed).'
         required: true
-        example: ".'"
-        type: string
+        example: 1
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
-      fallbackPlaceholder: ".'"
+      status_type: 1
+    queryParameters:
+      order:
+        name: order
+        description: 'Order of the results. Can be `asc` or `desc`. Default is `desc`.'
+        required: false
+        example: '"asc".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      search:
+        name: search
+        description: 'Search term for filtering todos by title or details. Must be at least 2 characters.'
+        required: false
+        example: '"meeting".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      order: '"asc".'
+      search: '"meeting".'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status_code": 200,
+            "data": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "status_code": 404,
+            "message": "Todo(s) cannot be found. Try a different search"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/todos/status
+    metadata:
+      groupName: Todos
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display filter guidance.'
+      description: 'Provides instructions on filtering todos by status.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -37,13 +181,277 @@ endpoints:
     fileParameters: []
     responses:
       -
+        status: 200
+        content: |-
+          {
+            "status_code": 200,
+            "message": "Provide a status to filter by after the endpoint - 0=Not Started, 1=In Progress, 2=Completed"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/todos/new
+    metadata:
+      groupName: Todos
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a new todo.'
+      description: 'Adds a new todo to the database.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'The title of the todo.'
+        required: true
+        example: '"Finish project".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      details:
+        name: details
+        description: 'Details about the todo. Must be at least 10 characters.'
+        required: true
+        example: '"Complete all tasks for the project".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      status:
+        name: status
+        description: 'The status of the todo. Must be 0, 1, or 2.'
+        required: true
+        example: 0
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title: '"Finish project".'
+      details: '"Complete all tasks for the project".'
+      status: 0
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "status_code": 201,
+            "message": "Todo created successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "status_code": 422,
+            "message": {
+              "title": ["The title field is required."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/todos/edit/{id}'
+    metadata:
+      groupName: Todos
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update an existing todo.'
+      description: 'Modifies an existing todo in the database.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the edit.'
+        required: true
+        example: enim
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      todo_id:
+        name: todo_id
+        description: 'The ID of the todo to update.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: enim
+      todo_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'The new title for the todo.'
+        required: false
+        example: '"New Title".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      details:
+        name: details
+        description: 'The new details for the todo.'
+        required: false
+        example: '"Updated details for the todo".'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      status:
+        name: status
+        description: 'The new status for the todo. Must be 0, 1, or 2.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title: '"New Title".'
+      details: '"Updated details for the todo".'
+      status: 2
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status_code": 200,
+            "message": "Todo updated successfully",
+            "data": {}
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
         status: 404
-        content: '{"status_code":"404","message":"Route does not exist. Try route api\/routes-list to see available endpoints"}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        content: |-
+          {
+            "status_code": 404,
+            "message": "Todo not found"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/todos/delete/{id}'
+    metadata:
+      groupName: Todos
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a todo.'
+      description: 'Removes a todo from the database.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: illum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      todo_id:
+        name: todo_id
+        description: 'The ID of the todo to delete.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: illum
+      todo_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status_code": 200,
+            "message": "Todo deleted successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "status_code": 404,
+            "message": "Todo not found"
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []

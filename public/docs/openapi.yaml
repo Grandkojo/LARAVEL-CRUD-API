@@ -1,12 +1,29 @@
 openapi: 3.0.3
 info:
-  title: Laravel_CRUD_API
+  title: 'http://localhost'
   description: ''
   version: 1.0.0
 servers:
   -
     url: 'http://localhost'
 paths:
+  /api/docs:
+    get:
+      summary: ''
+      operationId: getApiDocs
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
   '/api/{fallbackPlaceholder}':
     get:
       summary: ''
@@ -38,7 +55,7 @@ paths:
         in: path
         name: fallbackPlaceholder
         description: ''
-        example: ".'"
+        example: '2f,g/`S'
         required: true
         schema:
           type: string
@@ -81,12 +98,12 @@ paths:
         -
           in: query
           name: order
-          description: 'Order of the results, can be `asc` or `desc`. Default is `desc`.'
+          description: 'Order of the results. Can be `asc` or `desc`. Default is `desc`.'
           example: '"desc".'
           required: false
           schema:
             type: string
-            description: 'Order of the results, can be `asc` or `desc`. Default is `desc`.'
+            description: 'Order of the results. Can be `asc` or `desc`. Default is `desc`.'
             example: '"desc".'
             nullable: false
         -
@@ -384,7 +401,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the edit.'
-        example: alias
+        example: enim
         required: true
         schema:
           type: string
@@ -443,7 +460,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: aut
+        example: illum
         required: true
         schema:
           type: string

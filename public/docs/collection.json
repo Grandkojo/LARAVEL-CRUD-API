@@ -9,8 +9,8 @@
         }
     ],
     "info": {
-        "name": "Laravel_CRUD_API",
-        "_postman_id": "e8f04d02-9658-4fe0-9f9a-362af2a2af18",
+        "name": "http:\/\/localhost",
+        "_postman_id": "23581e07-e74f-4020-9aa8-44c4c1d0d963",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -19,6 +19,58 @@
             "name": "Endpoints",
             "description": "",
             "item": [
+                {
+                    "name": "GET api\/docs",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/docs",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/docs"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "public"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "accept-ranges",
+                                    "value": "bytes"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
                 {
                     "name": "GET api\/{fallbackPlaceholder}",
                     "request": {
@@ -31,7 +83,7 @@
                                 {
                                     "id": "fallbackPlaceholder",
                                     "key": "fallbackPlaceholder",
-                                    "value": ".%27",
+                                    "value": "2f%2Cg%2F%60S",
                                     "description": ""
                                 }
                             ]
@@ -132,7 +184,7 @@
                                 {
                                     "key": "order",
                                     "value": "%22desc%22.",
-                                    "description": "Order of the results, can be `asc` or `desc`. Default is `desc`.",
+                                    "description": "Order of the results. Can be `asc` or `desc`. Default is `desc`.",
                                     "disabled": false
                                 },
                                 {
@@ -329,7 +381,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "alias",
+                                    "value": "enim",
                                     "description": "The ID of the edit."
                                 },
                                 {
@@ -387,7 +439,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "illum",
                                     "description": "The ID of the delete."
                                 },
                                 {
