@@ -9,8 +9,8 @@
         }
     ],
     "info": {
-        "name": "http:\/\/localhost",
-        "_postman_id": "23581e07-e74f-4020-9aa8-44c4c1d0d963",
+        "name": "Laravel_CRUD_API",
+        "_postman_id": "100c1689-73ea-4022-8533-8ca17ba4c2c0",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -83,7 +83,7 @@
                                 {
                                     "id": "fallbackPlaceholder",
                                     "key": "fallbackPlaceholder",
-                                    "value": "2f%2Cg%2F%60S",
+                                    "value": "%26%23",
                                     "description": ""
                                 }
                             ]
@@ -381,7 +381,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "enim",
+                                    "value": "repellendus",
                                     "description": "The ID of the edit."
                                 },
                                 {
@@ -439,7 +439,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "illum",
+                                    "value": "ut",
                                     "description": "The ID of the delete."
                                 },
                                 {
