@@ -302,7 +302,7 @@ endpoints:
         name: id
         description: 'The ID of the edit.'
         required: true
-        example: voluptatem
+        example: et
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -319,7 +319,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: voluptatem
+      id: et
       todo_id: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -408,7 +408,7 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: laboriosam
+        example: modi
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -425,7 +425,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: laboriosam
+      id: modi
       todo_id: 1
     queryParameters: []
     cleanQueryParameters: []
