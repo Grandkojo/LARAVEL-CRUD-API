@@ -399,22 +399,30 @@ class TodoController extends Controller
      */
     public function destroy($todo_id)
     {
-        $todo = Todo::find($todo_id);
-
-        if (!$todo) {
-            $data = [
-                'status_code' => '404',
-                'message' => 'Todo not found',
-            ];
-            return response()->json($data, 404);
+        if ($todo_id){
+            $todo = Todo::find($todo_id);
+    
+            if (!$todo) {
+                $data = [
+                    'status_code' => '404',
+                    'message' => 'Todo not found',
+                ];
+                return response()->json($data, 404);
+            } else {
+                $todo->delete();
+    
+                $data = [
+                    'status_code' => '200',
+                    'message' => 'Todo deleted successfully'
+                ];
+                return response()->json($data, 200);
+            }
         } else {
-            $todo->delete();
-
             $data = [
-                'status_code' => '200',
-                'message' => 'Todo deleted successfully'
+                'status_code' => '422',
+                'message' => 'Please provide an id to delete'
             ];
-            return response()->json($data, 200);
+            return response()->json($data, 422);
         }
     }
 }

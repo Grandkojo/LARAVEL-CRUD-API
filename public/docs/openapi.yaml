@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
   title: Laravel_CRUD_API
-  description: ''
+  description: 'This is the Laravel CRUD API Documentation'
   version: 1.0.0
 servers:
   -
-    url: 'https://laravel-crud-api-production-223e.up.railway.app'
+    url: 'https://laravel-crud-api-production-223e.up.railway.app:8000'
 paths:
   /api/docs:
     get:
@@ -14,18 +14,13 @@ paths:
       description: ''
       parameters: []
       responses:
-        404:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: 'The route api/docs could not be found.'
-                properties:
-                  message:
-                    type: string
-                    example: 'The route api/docs could not be found.'
+                type: string
+                example: ''
       tags:
         - Endpoints
       security: []
@@ -43,11 +38,15 @@ paths:
               schema:
                 type: object
                 example:
-                  message: 'The route api/b could not be found.'
+                  status_code: '404'
+                  message: 'Route does not exist. Try route api/routes-list to see available endpoints'
                 properties:
+                  status_code:
+                    type: string
+                    example: '404'
                   message:
                     type: string
-                    example: 'The route api/b could not be found.'
+                    example: 'Route does not exist. Try route api/routes-list to see available endpoints'
       tags:
         - Endpoints
       security: []
@@ -56,7 +55,7 @@ paths:
         in: path
         name: fallbackPlaceholder
         description: ''
-        example: b
+        example: $;G
         required: true
         schema:
           type: string
@@ -402,7 +401,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the edit.'
-        example: molestias
+        example: maxime
         required: true
         schema:
           type: string
@@ -461,7 +460,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: nobis
+        example: reiciendis
         required: true
         schema:
           type: string

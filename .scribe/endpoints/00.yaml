@@ -26,14 +26,12 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 404
-        content: |-
-          {
-              "message": "The route api/docs could not be found."
-          }
+        status: 200
+        content: ''
         headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
+          cache-control: public
+          content-type: 'text/html; charset=UTF-8'
+          accept-ranges: bytes
           access-control-allow-origin: '*'
         description: null
         custom: []
@@ -64,14 +62,14 @@ endpoints:
         name: fallbackPlaceholder
         description: ''
         required: true
-        example: b
+        example: $;G
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      fallbackPlaceholder: b
+      fallbackPlaceholder: $;G
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -80,10 +78,7 @@ endpoints:
     responses:
       -
         status: 404
-        content: |-
-          {
-              "message": "The route api/b could not be found."
-          }
+        content: '{"status_code":"404","message":"Route does not exist. Try route api\/routes-list to see available endpoints"}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

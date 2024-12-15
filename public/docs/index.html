@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "https://laravel-crud-api-production-223e.up.railway.app/";
+        var tryItOutBaseUrl = "https://laravel-crud-api-production-223e.up.railway.app:8000";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -123,7 +123,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: December 14, 2024</li>
+        <li>Last updated: December 15, 2024</li>
     </ul>
 </div>
 
@@ -131,8 +131,9 @@
     <div class="dark-box"></div>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
+<p>This is the Laravel CRUD API Documentation</p>
 <aside>
-    <strong>Base URL</strong>: <code>https://laravel-crud-api-production-223e.up.railway.app/</code>
+    <strong>Base URL</strong>: <code>https://laravel-crud-api-production-223e.up.railway.app:8000</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -158,14 +159,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://laravel-crud-api-production-223e.up.railway.app/api/docs" \
+    --get "https://laravel-crud-api-production-223e.up.railway.app:8000/api/docs" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/docs"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/docs"
 );
 
 const headers = {
@@ -182,20 +183,19 @@ fetch(url, {
 
 <span id="example-responses-GETapi-docs">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
+            <pre><code class="language-http">cache-control: public
+content-type: text/html; charset=UTF-8
+accept-ranges: bytes
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The route api/docs could not be found.&quot;
-}</code>
+<code class="language-json" style="max-height: 300px;"></code>
  </pre>
     </span>
 <span id="execution-results-GETapi-docs" hidden>
@@ -282,14 +282,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://laravel-crud-api-production-223e.up.railway.app/api/b" \
+    --get "https://laravel-crud-api-production-223e.up.railway.app:8000/api/$;G" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/b"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/$;G"
 );
 
 const headers = {
@@ -318,7 +318,8 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The route api/b could not be found.&quot;
+    &quot;status_code&quot;: &quot;404&quot;,
+    &quot;message&quot;: &quot;Route does not exist. Try route api/routes-list to see available endpoints&quot;
 }</code>
  </pre>
     </span>
@@ -398,10 +399,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fallbackPlaceholder"                data-endpoint="GETapi--fallbackPlaceholder-"
-               value="b"
+               value="$;G"
                data-component="url">
     <br>
-<p>Example: <code>b</code></p>
+<p>Example: <code>$;G</code></p>
             </div>
                     </form>
 
@@ -422,14 +423,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://laravel-crud-api-production-223e.up.railway.app/api/routes-list" \
+    --get "https://laravel-crud-api-production-223e.up.railway.app:8000/api/routes-list" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/routes-list"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/routes-list"
 );
 
 const headers = {
@@ -545,14 +546,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://laravel-crud-api-production-223e.up.railway.app/api/todos?order=%22desc%22.&amp;search=%22meeting%22." \
+    --get "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos?order=%22desc%22.&amp;search=%22meeting%22." \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos"
 );
 
 const params = {
@@ -703,14 +704,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://laravel-crud-api-production-223e.up.railway.app/api/todos/status/1?order=%22asc%22.&amp;search=%22meeting%22." \
+    --get "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/status/1?order=%22asc%22.&amp;search=%22meeting%22." \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/status/1"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/status/1"
 );
 
 const params = {
@@ -873,14 +874,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://laravel-crud-api-production-223e.up.railway.app/api/todos/status" \
+    --get "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/status" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/status"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/status"
 );
 
 const headers = {
@@ -991,7 +992,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/new" \
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/new" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1004,7 +1005,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/new"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/new"
 );
 
 const headers = {
@@ -1170,7 +1171,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/edit/molestias" \
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/edit/maxime" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1183,7 +1184,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/edit/molestias"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/edit/maxime"
 );
 
 const headers = {
@@ -1304,10 +1305,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-todos-edit--id-"
-               value="molestias"
+               value="maxime"
                data-component="url">
     <br>
-<p>The ID of the edit. Example: <code>molestias</code></p>
+<p>The ID of the edit. Example: <code>maxime</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>todo_id</code></b>&nbsp;&nbsp;
@@ -1369,14 +1370,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/delete/nobis" \
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/delete/reiciendis" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://laravel-crud-api-production-223e.up.railway.app/api/todos/delete/nobis"
+    "https://laravel-crud-api-production-223e.up.railway.app:8000/api/todos/delete/reiciendis"
 );
 
 const headers = {
@@ -1489,10 +1490,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-todos-delete--id-"
-               value="nobis"
+               value="reiciendis"
                data-component="url">
     <br>
-<p>The ID of the delete. Example: <code>nobis</code></p>
+<p>The ID of the delete. Example: <code>reiciendis</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>todo_id</code></b>&nbsp;&nbsp;
