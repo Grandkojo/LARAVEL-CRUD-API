@@ -69,15 +69,8 @@ class TodoController extends Controller
             return response()->json($data, 422);
         }
 
-        if (!in_array($order, self::orderType)) {
 
-            $data = [
-                'status_code' => '422',
-                'message' => 'Order type can only be asc or desc'
-            ];
 
-            return response()->json($data, 422);
-        }
 
         $todos = Todo::orderBy('created_at', $order)
             ->where('title', 'like', '%' . $search_param . '%')
@@ -131,22 +124,15 @@ class TodoController extends Controller
 
         if ($search_param == null) {
 
-            if ($status_type != null) {
 
-                if (!in_array($status_type, self::statusTypes)) {
-                    $data = [
-                        'status_code' => '422',
-                        'message' => 'Status can only be: 0-Not Started ,1-In Progress, 2-Completed'
-                    ];
-                    return response()->json($data, 422);
-                }
-            } else {
+            if (!in_array($status_type, self::statusTypes)) {
                 $data = [
                     'status_code' => '422',
-                    'message' => 'Please provide a status type. 0-Not Started ,1-In Progress, 2-Completed'
+                    'message' => 'Status can only be: 0-Not Started ,1-In Progress, 2-Completed'
                 ];
                 return response()->json($data, 422);
             }
+
 
             if (!in_array($order, self::orderType)) {
 
@@ -167,15 +153,7 @@ class TodoController extends Controller
             return response()->json($data, 422);
         }
 
-        if (!in_array($order, self::orderType)) {
 
-            $data = [
-                'status_code' => '422',
-                'message' => 'Order type can only be asc or desc'
-            ];
-
-            return response()->json($data, 422);
-        }
 
         $todos = Todo::orderBy('created_at', $order)
             ->where('status', $status_type)
@@ -318,11 +296,10 @@ class TodoController extends Controller
     /**
      * Update an existing todo.
      * 
-     * Modifies an existing todo in the database.
+     * Modifies an existing todo in the database. The id should be a number(it uses string as a decor)
      * 
      * @group Todos
      * 
-     * @urlParam todo_id int required The ID of the todo to update. Example: 1
      * @bodyParam title string The new title for the todo. Example: "New Title".
      * @bodyParam details string The new details for the todo. Example: "Updated details for the todo".
      * @bodyParam status int The new status for the todo. Must be 0, 1, or 2. Example: 2
@@ -382,11 +359,10 @@ class TodoController extends Controller
     /**
      * Delete a todo.
      * 
-     * Removes a todo from the database.
+     * Removes a todo from the database. The id should be a number(it uses string as a decor)
      * 
      * @group Todos
      * 
-     * @urlParam todo_id int required The ID of the todo to delete. Example: 1
      * 
      * @response 200 {
      *   "status_code": 200,
@@ -399,30 +375,22 @@ class TodoController extends Controller
      */
     public function destroy($todo_id)
     {
-        if ($todo_id){
-            $todo = Todo::find($todo_id);
-    
-            if (!$todo) {
-                $data = [
-                    'status_code' => '404',
-                    'message' => 'Todo not found',
-                ];
-                return response()->json($data, 404);
-            } else {
-                $todo->delete();
-    
-                $data = [
-                    'status_code' => '200',
-                    'message' => 'Todo deleted successfully'
-                ];
-                return response()->json($data, 200);
-            }
-        } else {
+        $todo = Todo::find($todo_id);
+
+        if (!$todo) {
             $data = [
-                'status_code' => '422',
-                'message' => 'Please provide an id to delete'
+                'status_code' => '404',
+                'message' => 'Todo not found',
             ];
-            return response()->json($data, 422);
+            return response()->json($data, 404);
+        } else {
+            $todo->delete();
+
+            $data = [
+                'status_code' => '200',
+                'message' => 'Todo deleted successfully'
+            ];
+            return response()->json($data, 200);
         }
     }
 }

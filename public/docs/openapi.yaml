@@ -7,6 +7,23 @@ servers:
   -
     url: 'https://laravel-crud-api-production-223e.up.railway.app'
 paths:
+  /api/coverage:
+    get:
+      summary: ''
+      operationId: getApiCoverage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
   /api/docs:
     get:
       summary: ''
@@ -332,7 +349,7 @@ paths:
     put:
       summary: 'Update an existing todo.'
       operationId: updateAnExistingTodo
-      description: 'Modifies an existing todo in the database.'
+      description: 'Modifies an existing todo in the database. The id should be a number(it uses string as a decor)'
       parameters: []
       responses:
         200:
@@ -401,23 +418,15 @@ paths:
         in: path
         name: id
         description: 'The ID of the edit.'
-        example: dolore
+        example: aperiam
         required: true
         schema:
           type: string
-      -
-        in: path
-        name: todo_id
-        description: 'The ID of the todo to update.'
-        example: 1
-        required: true
-        schema:
-          type: integer
   '/api/todos/delete/{id}':
     delete:
       summary: 'Delete a todo.'
       operationId: deleteATodo
-      description: 'Removes a todo from the database.'
+      description: 'Removes a todo from the database. The id should be a number(it uses string as a decor)'
       parameters: []
       responses:
         200:
@@ -460,18 +469,10 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: neque
+        example: atque
         required: true
         schema:
           type: string
-      -
-        in: path
-        name: todo_id
-        description: 'The ID of the todo to delete.'
-        example: 1
-        required: true
-        schema:
-          type: integer
 tags:
   -
     name: Endpoints

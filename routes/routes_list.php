@@ -31,5 +31,10 @@ return [
         'method' => 'DELETE',
         'uri' => 'api/todos/delete/{todo_id}',
         'msg' => 'Deletes an existing todo'
+    ],
+    [
+        'method' => 'POST',
+        'uri' => '/api/todos/new',
+        'msg' => 'Create a new todo',
     ]
 ];

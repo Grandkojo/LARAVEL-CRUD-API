@@ -1,66 +1,115 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Laravel CRUD API
 
-## About Laravel
+This API is built using **Laravel** for managing **todos**. It allows you to perform basic CRUD operations on todo items. Please note that there is **no user authentication** in this version of the API.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The API supports the following operations:
 
-## Learning Laravel
+1. **Get Todos**  
+   Retrieve all todo items.
+   
+2. **Filter Todos by Status**  
+   Filter todos based on their status:
+   - `0`: Not Started
+   - `1`: In Progress
+   - `2`: Finished
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Order Todos**  
+   Order the todo items in either ascending or descending order based on the creation date.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. **Search for Todos**  
+   Search for todos by their title or details.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. **Create New Todos**  
+   Add new todo items with a title, details, and status.
 
-## Laravel Sponsors
+6. **Edit Existing Todos**  
+   Modify the title, details, or status of an existing todo.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+7. **Delete Existing Todos**  
+   Remove a todo item from the list.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## API Endpoints
 
-## Contributing
+| Method  | Endpoint                    | Description                                            |
+|---------|-----------------------------|--------------------------------------------------------|
+| `GET`   | `/api/todos`                | Get all todos                                          |
+| `GET`   | `/api/todos/{status}`       | Get todos filtered by status (0, 1, 2)                 |
+| `GET`   | `/api/todos?order={asc/desc}`| Get todos ordered by creation date (ascending/descending)|
+| `GET`   | `/api/todos?search={term}`  | Search todos by title or details                       |
+| `POST`  | `/api/todos/new`                | Create a new todo                                      |
+| `PUT`   | `/api/todos/edit/{id}`           | Update an existing todo by ID                          |
+| `DELETE`| `/api/todos/delete/{id}`           | Delete a todo by ID                                    |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**To get started with this API:**
 
-## Security Vulnerabilities
+The api has been hosted along side with it's documentation on a free tier Railway app.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+API - https://laravel-crud-api-production-223e.up.railway.app/
+API docs - https://laravel-crud-api-production-223e.up.railway.app/docs
+
+
+**In case my free trial end and you want to access it**
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/laravel-crud-api.git
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   cd laravel-crud-api
+   composer install
+   ```
+
+3. **Set up environment variables**:
+   Copy `.env.example` to `.env` and configure your environment:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Generate application key**:
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Migrate the database**:
+   ```bash
+   php artisan migrate
+   ```
+
+6. **Start the development server**:
+   ```bash
+   php artisan serve --port=8080
+   ```
+
+Your API should now be running on `http://localhost:8080`.
+
+---
+
+## Test Coverage
+
+The following is an analysis of the code coverage from xdebug and php code coverage:
+
+- **Classes**: 10%% coverage
+- **Methods**: 100%% coverage
+- **Lines**: 100%% coverage
+
+![Test Coverage](public/images/code_coverage_laravel_crud_api_ui.png)
+
+![Test Coverage_2](public/images/code_coverage_laravel_crud_api_text.png)
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-source and available under the [MIT License](LICENSE).

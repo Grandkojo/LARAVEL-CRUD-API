@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel_CRUD_API",
-        "_postman_id": "eeeab90b-3071-41ae-a975-43621e0cdde7",
+        "_postman_id": "3b3a0905-4581-46cd-8660-c42866d40a29",
         "description": "This is the Laravel CRUD API Documentation",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -19,6 +19,58 @@
             "name": "Endpoints",
             "description": "",
             "item": [
+                {
+                    "name": "GET api\/coverage",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/coverage",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/coverage"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "public"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "accept-ranges",
+                                    "value": "bytes"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
                 {
                     "name": "GET api\/docs",
                     "request": {
@@ -381,14 +433,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolore",
+                                    "value": "aperiam",
                                     "description": "The ID of the edit."
-                                },
-                                {
-                                    "id": "todo_id",
-                                    "key": "todo_id",
-                                    "value": "1",
-                                    "description": "The ID of the todo to update."
                                 }
                             ]
                         },
@@ -407,7 +453,7 @@
                             "mode": "raw",
                             "raw": "{\"title\":\"\\\"New Title\\\".\",\"details\":\"\\\"Updated details for the todo\\\".\",\"status\":2}"
                         },
-                        "description": "Modifies an existing todo in the database.",
+                        "description": "Modifies an existing todo in the database. The id should be a number(it uses string as a decor)",
                         "auth": {
                             "type": "noauth"
                         }
@@ -439,14 +485,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "neque",
+                                    "value": "atque",
                                     "description": "The ID of the delete."
-                                },
-                                {
-                                    "id": "todo_id",
-                                    "key": "todo_id",
-                                    "value": "1",
-                                    "description": "The ID of the todo to delete."
                                 }
                             ]
                         },
@@ -462,7 +502,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "Removes a todo from the database.",
+                        "description": "Removes a todo from the database. The id should be a number(it uses string as a decor)",
                         "auth": {
                             "type": "noauth"
                         }

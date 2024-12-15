@@ -14,6 +14,11 @@ Route::get('/', function () {
     ], 200);
 });
 
+Route::get('/coverage', function () {
+    return response()->file(base_path('coverage/index.html'));
+    // return view('welcome');
+});
+
 Route::get('/docs', function () {
     return response()->file(public_path('docs/index.html'));
     // return view('welcome');
