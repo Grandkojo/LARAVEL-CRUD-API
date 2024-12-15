@@ -58,6 +58,8 @@ The api has been hosted along side with it's documentation on a free tier Railwa
 API - https://laravel-crud-api-production-223e.up.railway.app/
 API docs - https://laravel-crud-api-production-223e.up.railway.app/docs
 
+Use postman or insomnia to navigate the endpoints and manage the todos, or you can use our interactive documentation found in the api docs
+
 
 **In case my free trial end and you want to access it**
 
