@@ -3,7 +3,7 @@
 This is the Laravel CRUD API Documentation
 
 <aside>
-    <strong>Base URL</strong>: <code>https://laravel-crud-api-production-223e.up.railway.app:8080</code>
+    <strong>Base URL</strong>: <code>https://laravel-crud-api-production-223e.up.railway.app</code>
 </aside>
 
 This documentation aims to provide all the information you need to work with our API.

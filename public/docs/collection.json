@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "https:\/\/laravel-crud-api-production-223e.up.railway.app:8080"
+            "value": "https:\/\/laravel-crud-api-production-223e.up.railway.app"
         }
     ],
     "info": {
         "name": "Laravel_CRUD_API",
-        "_postman_id": "6a1357e1-bccd-4ede-9155-b38e3d3a7d22",
+        "_postman_id": "eeeab90b-3071-41ae-a975-43621e0cdde7",
         "description": "This is the Laravel CRUD API Documentation",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -83,7 +83,7 @@
                                 {
                                     "id": "fallbackPlaceholder",
                                     "key": "fallbackPlaceholder",
-                                    "value": "%7Ef0c",
+                                    "value": "",
                                     "description": ""
                                 }
                             ]
@@ -121,8 +121,8 @@
                                     "value": "*"
                                 }
                             ],
-                            "code": 404,
-                            "body": "{\"status_code\":\"404\",\"message\":\"Route does not exist. Try route api\\\/routes-list to see available endpoints\"}",
+                            "code": 200,
+                            "body": "{\"status\":\"Found\",\"msg \":\"Welcome to Laravel Crud API. navigate to api\\\/docs\\\/ to view the api documentation or api\\\/routes-list to access all available routes\"}",
                             "name": ""
                         }
                     ]
@@ -381,7 +381,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "dolore",
                                     "description": "The ID of the edit."
                                 },
                                 {
@@ -439,7 +439,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "modi",
+                                    "value": "neque",
                                     "description": "The ID of the delete."
                                 },
                                 {
