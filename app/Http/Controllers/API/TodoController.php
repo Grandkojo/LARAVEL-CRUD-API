@@ -55,7 +55,7 @@ class TodoController extends Controller
 
             $data = [
                 'status_code' => '200',
-                'todos' => $todos
+                'data' => $todos
             ];
 
             return response()->json($data, 200);
